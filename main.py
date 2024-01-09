@@ -2,12 +2,12 @@ import PyPDF2
 import pyperclip
 import fitz
 import os
-import pygame
 import transformers
 import tensorflow
 from transformers import pipeline
 from pdf2docx import Converter
 from gtts import gTTS
+import pygame
 from pygame import mixer
 mixer.init()
 
@@ -145,6 +145,8 @@ class Pdf_Tools:
 
 
     def pdf_to_docx(self,input_pdf_filepath, output_pdf_filepath):
+
+        #from fitz
         cv = Converter(input_pdf_filepath)
 
         if os.path.exists(output_pdf_filepath) == False:
@@ -199,11 +201,11 @@ if __name__ == "__main__":
     while decision != "12":
 
         if decision == "1":
-            tools.cut_pdf("files/RDPD.pdf", 15, 23, "files/output4.pdf")
-            # tools.cut_pdf("files/RDPD.pdf", 16, 17, "files/output5.pdf")
+            # tools.cut_pdf("files/GHP_CRIT.pdf", 15, 23, "files/output4.pdf")
+            tools.cut_pdf("files/GHP_CRIT.pdf", 16, 17, "files/output5.pdf")
 
         if decision == "2":
-            tools.merge_pdf("files/output4.pdf", "files/RDPD.pdf", "files/output_merge.pdf")
+            tools.merge_pdf("files/output4.pdf", "files/GHP_CRIT.pdf", "files/output_merge.pdf")
 
         if decision == "3":
             print(tools.extract_text("files/output4.pdf"))
@@ -220,17 +222,17 @@ if __name__ == "__main__":
 
         #SHOWCASE COMPRESS BEFORE PROTECTION
         if decision == "6":
-            tools.protect_pdf("files/RDPD.pdf", "test")
+            tools.protect_pdf("files/GHP_CRIT.pdf", "test")
 
         #SHOWCASE COMPRESS BEFORE PROTECTION
         if decision == "7":
-            tools.compress("files/RDPD.pdf")
+            tools.compress("files/GHP_CRIT.pdf")
         if decision == "8":
             tools.pdf_to_png("files/output5.pdf")
         if decision == "9":
             tools.pdf_to_docx("files/output5.pdf", "files/output5.docx")
         if decision == "10":
-            tools.copy_text_to_clipboard("I love CS!!!!!!!!!!!!!!!!!!")
+            tools.copy_text_to_clipboard("I love CS!!!!!!!!!!!!!!!!!!") 
         if decision == "11":
             input_text = tools.extract_text("files/output5.pdf")
             chunked_input = tools.chunk_text(input_text)
